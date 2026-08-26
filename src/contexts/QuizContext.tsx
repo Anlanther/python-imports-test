@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useQuiz } from "../hooks";
+import { useQuizState } from "../hooks";
 import type { QuizContextType } from "../models";
 
 const QUIZ_CONTEXT_DEFAULT_VALUE: QuizContextType = {
@@ -12,6 +12,13 @@ const QUIZ_CONTEXT_DEFAULT_VALUE: QuizContextType = {
     correct: 0,
     incorrect: 0,
   },
+
+  setScreen: () => {},
+  setQuestions: () => {},
+  setCurrentIndex: () => {},
+  setCurrentQuestion: () => {},
+  setUserAnswer: () => {},
+  setScore: () => {},
 };
 
 export const QuizContext = createContext<QuizContextType>(
@@ -23,7 +30,7 @@ type Props = {
 };
 
 const QuizProvider = ({ children }: Props) => {
-  const quiz = useQuiz();
+  const quiz = useQuizState();
   return <QuizContext value={quiz}>{children}</QuizContext>;
 };
 

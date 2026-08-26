@@ -8,4 +8,11 @@ export interface QuizContextType {
   currentQuestion: Question | null;
   userAnswer: string;
   score: Score;
+
+  setScreen: (screen: "home" | "quiz" | "result") => void;
+  setQuestions: (questions: Question[]) => void;
+  setCurrentIndex: (index: number) => void;
+  setCurrentQuestion: (question: Question | null) => void;
+  setUserAnswer: (answer: string) => void;
+  setScore: (score: Score) => void;
 }

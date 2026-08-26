@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useQuiz } from "../hooks";
 
 const HomeScreen = () => {
-  const [showCheatSheet, setShowCheatSheet] = useState<boolean>(false);
+  const { setScreen } = useQuiz();
 
   return (
     <div className="container">
-      HomeScreen
-      <button>Start Quiz</button>
+      Python Import Quiz
+      <button className="bg-primary" onClick={() => setScreen("quiz")}>
+        Start Quiz
+      </button>
     </div>
   );
 };
