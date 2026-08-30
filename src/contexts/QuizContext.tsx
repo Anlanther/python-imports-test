@@ -1,24 +1,16 @@
 import { createContext } from "react";
 import { useQuizState } from "../hooks";
-import type { QuizContextType } from "../models";
+
+export interface QuizContextType {
+  screen: "home" | "quiz" | "result";
+
+  setScreen: (screen: "home" | "quiz" | "result") => void;
+}
 
 const QUIZ_CONTEXT_DEFAULT_VALUE: QuizContextType = {
   screen: "home",
-  questions: [],
-  currentIndex: 0,
-  currentQuestion: null,
-  userAnswer: "",
-  score: {
-    correct: 0,
-    incorrect: 0,
-  },
 
   setScreen: () => {},
-  setQuestions: () => {},
-  setCurrentIndex: () => {},
-  setCurrentQuestion: () => {},
-  setUserAnswer: () => {},
-  setScore: () => {},
 };
 
 export const QuizContext = createContext<QuizContextType>(
