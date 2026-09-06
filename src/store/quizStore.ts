@@ -1,37 +1,43 @@
 import { create } from "zustand";
-import type { Category, Question, Score } from "../models";
+import { Category, type Answer, type QuestionAnswer } from "../models";
 
 type QuizState = {
   selectedCategories: Category[];
-  questions: Question[];
+  questions: QuestionAnswer[];
   currentIndex: number;
-  currentQuestion: Question | null;
-  userAnswer: string;
-  score: Score;
+  userAnswers: Answer[];
 };
 
 type QuizActions = {
   setSelectedCategories: (categories: Category[]) => void;
-  setQuestions: (questions: Question[]) => void;
+  setQuestions: (questions: QuestionAnswer[]) => void;
   setCurrentIndex: (index: number) => void;
-  setCurrentQuestion: (question: Question | null) => void;
-  setUserAnswer: (answer: string) => void;
-  setScore: (score: Score) => void;
+  setUserAnswer: (answer: Answer) => void;
+  resetQuiz: () => void;
 };
 
 export const useQuizStore = create<QuizState & QuizActions>((set) => ({
-  selectedCategories: [],
+  selectedCategories: Object.values(Category),
   questions: [],
   currentIndex: 0,
-  currentQuestion: null,
-  userAnswer: "",
+  userAnswers: [],
   score: { correct: 0, incorrect: 0 },
 
   setSelectedCategories: (categories) =>
     set({ selectedCategories: categories }),
   setQuestions: (questions) => set({ questions }),
   setCurrentIndex: (index) => set({ currentIndex: index }),
-  setCurrentQuestion: (question) => set({ currentQuestion: question }),
-  setUserAnswer: (answer) => set({ userAnswer: answer }),
-  setScore: (score) => set({ score }),
+  setUserAnswer: (answer) =>
+    set((state) => {
+      const updatedAnswers = [...state.userAnswers];
+      updatedAnswers[state.currentIndex] = answer;
+      return { userAnswers: updatedAnswers };
+    }),
+  resetQuiz: () =>
+    set({
+      selectedCategories: Object.values(Category),
+      questions: [],
+      currentIndex: 0,
+      userAnswers: [],
+    }),
 }));

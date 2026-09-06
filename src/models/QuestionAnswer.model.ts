@@ -1,6 +1,6 @@
 import type { Category } from "./Category.model";
 
-export interface Question {
+export interface QuestionAnswer {
   name: string;
   statement: string;
   category: Category;

@@ -1,11 +1,13 @@
 import { useState } from "react";
-import type { Question, Score } from "../models";
+import type { QuestionAnswer, Score } from "../models";
 
 export const useQuizState = () => {
   const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<QuestionAnswer[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+  const [currentQuestion, setCurrentQuestion] = useState<QuestionAnswer | null>(
+    null,
+  );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [score, setScore] = useState<Score>({
     correct: 0,

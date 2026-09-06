@@ -1,7 +1,7 @@
-import type { Question } from "./Question.model";
+import type { QuestionAnswer } from "./QuestionAnswer.model";
 
 export interface Answer {
-  question: Question;
+  question: QuestionAnswer;
   userAnswer: string;
   isCorrect: boolean;
 }

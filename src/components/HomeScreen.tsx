@@ -32,15 +32,15 @@ const HomeScreen = () => {
   );
 
   return (
-    <div className="container">
-      <Card>
+    <div className="container flex flex-col items-center gap-4 pt-8">
+      <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle>Python Import Quiz</CardTitle>
         </CardHeader>
         <CardContent>
           <p>Card Content</p>
-          <div>
-            <FieldGroup className="mx-auto w-56">
+          <div className="">
+            <FieldGroup className="mx-auto grid w-full grid-cols-3 gap-3">
               {Object.values(Category).map((category) => (
                 <Field key={category} orientation="horizontal">
                   <Checkbox
