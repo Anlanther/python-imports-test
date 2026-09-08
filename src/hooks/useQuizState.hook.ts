@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { QuestionAnswer, Score } from "../models";
+import type { QuestionAnswer } from "../models";
 
 export const useQuizState = () => {
   const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
@@ -9,10 +9,6 @@ export const useQuizState = () => {
     null,
   );
   const [userAnswer, setUserAnswer] = useState<string>("");
-  const [score, setScore] = useState<Score>({
-    correct: 0,
-    incorrect: 0,
-  });
 
   return {
     screen,
@@ -20,13 +16,11 @@ export const useQuizState = () => {
     currentIndex,
     currentQuestion,
     userAnswer,
-    score,
 
     setScreen,
     setQuestions,
     setCurrentIndex,
     setCurrentQuestion,
     setUserAnswer,
-    setScore,
   };
 };

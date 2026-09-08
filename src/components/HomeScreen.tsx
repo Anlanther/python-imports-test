@@ -1,7 +1,18 @@
 import { useCallback } from "react";
+import { IMPORT_CATEGORIES } from "../data";
 import { useQuiz } from "../hooks";
 import { Category } from "../models";
 import { useQuizStore } from "../store/quizStore";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -32,13 +43,15 @@ const HomeScreen = () => {
   );
 
   return (
-    <div className="container flex flex-col items-center gap-4 pt-8">
+    <div className="container flex mx-auto flex-col items-center gap-4 pt-8">
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle>Python Import Quiz</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>Card Content</p>
+          <p className="pb-4">
+            Select the categories below in which you want to practice with:
+          </p>
           <div className="">
             <FieldGroup className="mx-auto grid w-full grid-cols-3 gap-3">
               {Object.values(Category).map((category) => (
@@ -56,7 +69,42 @@ const HomeScreen = () => {
             </FieldGroup>
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex justify-between">
+          <AlertDialog>
+            <AlertDialogTrigger
+              render={<Button variant="outline">Cheat Sheet</Button>}
+            />
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>All Imports</AlertDialogTitle>
+              </AlertDialogHeader>
+              <AlertDialogDescription>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {Object.entries(IMPORT_CATEGORIES).map(([_, category]) => {
+                    return (
+                      <Card key={category.name}>
+                        <CardHeader>
+                          <CardTitle>{category.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <ul className="list-disc pl-4">
+                            {category.imports.map((importItem) => (
+                              <li key={importItem.name}>
+                                <code>{importItem.statement}</code>
+                              </li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </AlertDialogDescription>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
           <Button variant="outline" onClick={() => setScreen("quiz")}>
             Start
           </Button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Field, FieldLabel } from "../components/ui/field";
+import { Field } from "../components/ui/field";
 import { Input } from "../components/ui/input";
 import { IMPORT_CATEGORIES } from "../data";
 import { useQuiz } from "../hooks";
@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Progress } from "./ui/progress";
+import { Progress, ProgressLabel, ProgressValue } from "./ui/progress";
 
 const TOTAL_QUESTIONS = 3;
 
@@ -94,7 +94,10 @@ const QuizScreen = () => {
 
   return (
     <div className="container flex mx-auto flex-col items-center gap-4 pt-8">
-      <Progress value={progress} className="w-[60%]" />
+      <Progress value={progress} className="w-[60%]">
+        <ProgressLabel>Completed</ProgressLabel>
+        <ProgressValue />
+      </Progress>
       <Card className="w-[60%]">
         <form
           onSubmit={(event) => {
@@ -108,10 +111,8 @@ const QuizScreen = () => {
             <CardTitle>Python Import Quiz</CardTitle>
           </CardHeader>
           <CardContent>
+            <h3 className="pb-3 pt-3">{questions[currentIndex]?.name ?? ""}</h3>
             <Field data-invalid={isAnswerInvalid} className="pb-3">
-              <FieldLabel htmlFor="input-import">
-                {questions[currentIndex]?.name ?? ""}
-              </FieldLabel>
               <Input
                 id="input-import"
                 type="text"
@@ -126,10 +127,7 @@ const QuizScreen = () => {
               />
             </Field>
           </CardContent>
-          <CardFooter>
-            <Button type="submit" variant="outline" disabled={isAnswerInvalid}>
-              Next
-            </Button>
+          <CardFooter className="flex justify-between">
             {currentIndex > 0 && (
               <Button
                 type="button"
@@ -139,6 +137,14 @@ const QuizScreen = () => {
                 Back
               </Button>
             )}
+            <Button
+              type="submit"
+              variant="outline"
+              disabled={isAnswerInvalid}
+              className="ml-auto"
+            >
+              Next
+            </Button>
           </CardFooter>
         </form>
       </Card>
