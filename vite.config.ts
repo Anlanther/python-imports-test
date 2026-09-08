@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/python-imports-test/",
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

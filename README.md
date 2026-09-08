@@ -1,34 +1,32 @@
-# React + TypeScript + Vite
+# Python Imports Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Due to how buggy most IDEs are with import statements for Python libraries, either the needed import is not generated correctly or what is suggested is not accurate. This project was thus made for fun to test whether you can remember some of the most common and basic imports and the statement to import them.
 
-Currently, two official plugins are available:
+This project was also made to practice and learn more about:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React Development (with Vite)
+- Tailwind
+- shadcn
+- Zustand
 
-## React Compiler
+## Key Learnings
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### React Development
 
-Note: This will impact Vite dev & build performances.
+- Setting up Contexts
+- Setting up Hooks
+- Typing conventions
 
-## Expanding the Oxlint configuration
+### Tailwind
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- Basic inline styling without need of a separate style sheet
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+### shadcn
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- Installation and setup
+- Ownership of components from generation
+
+### Zustand
+
+- Setup of state store
+- Setup and use of actions and selectors
