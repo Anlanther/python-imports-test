@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Field } from "../components/ui/field";
 import { Input } from "../components/ui/input";
+import { DEFAULT_QUESTION_COUNT } from "../constants";
 import { IMPORT_CATEGORIES } from "../data";
 import { useQuiz } from "../hooks";
 import type { Answer, Category, QuestionAnswer } from "../models";
@@ -14,8 +15,6 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Progress, ProgressLabel, ProgressValue } from "./ui/progress";
-
-const TOTAL_QUESTIONS = 3;
 
 const QuizScreen = () => {
   const questions = useQuizStore((state) => state.questions);
@@ -60,7 +59,10 @@ const QuizScreen = () => {
       ];
     }
 
-    const selectedQuestions = shuffledQuestions.slice(0, TOTAL_QUESTIONS);
+    const selectedQuestions = shuffledQuestions.slice(
+      0,
+      DEFAULT_QUESTION_COUNT,
+    );
     setQuestions(selectedQuestions);
   };
 
@@ -73,10 +75,10 @@ const QuizScreen = () => {
       userAnswer: input,
     };
     setAnswer(answer);
-    if (currentIndex + 1 >= TOTAL_QUESTIONS) {
+    if (currentIndex + 1 >= DEFAULT_QUESTION_COUNT) {
       return setScreen("result");
     }
-    setProgress(((currentIndex + 1) / TOTAL_QUESTIONS) * 100);
+    setProgress(((currentIndex + 1) / DEFAULT_QUESTION_COUNT) * 100);
     setCurrentIndex(currentIndex + 1);
     setAnswerInput("");
     setIsAnswerDirty(false);
@@ -86,7 +88,7 @@ const QuizScreen = () => {
     const previousAnswer =
       useQuizStore.getState().userAnswers[currentIndex - 1];
     setCurrentIndex(currentIndex - 1);
-    setProgress(((currentIndex - 1) / TOTAL_QUESTIONS) * 100);
+    setProgress(((currentIndex - 1) / DEFAULT_QUESTION_COUNT) * 100);
     setAnswerInput(previousAnswer.userAnswer);
   };
 

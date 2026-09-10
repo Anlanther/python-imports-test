@@ -21,7 +21,6 @@ export const useQuizStore = create<QuizState & QuizActions>((set) => ({
   questions: [],
   currentIndex: 0,
   userAnswers: [],
-  score: { correct: 0, incorrect: 0 },
 
   setSelectedCategories: (categories) =>
     set({ selectedCategories: categories }),

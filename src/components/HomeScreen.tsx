@@ -105,7 +105,11 @@ const HomeScreen = () => {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-          <Button variant="outline" onClick={() => setScreen("quiz")}>
+          <Button
+            variant="outline"
+            onClick={() => setScreen("quiz")}
+            disabled={selectedCategories.length === 0}
+          >
             Start
           </Button>
         </CardFooter>

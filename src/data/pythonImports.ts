@@ -208,6 +208,3 @@ export const IMPORT_CATEGORIES: CategoryImports = {
     ],
   },
 } as const;
-
-export const QUESTION_COUNTS = [10, 20, 30, 50] as const;
-export const DEFAULT_QUESTION_COUNT = 10;

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useQuiz } from "../hooks";
 import { useQuizStore } from "../store/quizStore";
 import { Button } from "./ui/button";
@@ -20,28 +19,27 @@ const ResultScreen = () => {
     resetQuiz();
   };
 
-  useEffect(() => {
-    console.log("Answers:", answers);
-  }, [answers]);
-
   return (
     <div className="container flex flex-col mx-auto items-center gap-4 pt-8">
-      <Card>
-        <CardHeader>
+      <Card className="max-h-[85vh] max-w-[85vw] overflow-hidden">
+        <CardHeader className="sticky top-0 z-10 bg-card">
           <CardTitle>Python Import Quiz</CardTitle>
         </CardHeader>
-        <CardContent>
-          <h3>
+        <CardContent className="min-h-0 flex-1 overflow-y-auto">
+          <h3 className="mb-4">
             <strong>TOTAL:</strong> {answers.filter((a) => a.isCorrect).length}/
             {answers.length}
           </h3>
           <div className="answer-cards grid grid-cols-1 gap-4 md:grid-cols-3">
             {answers.map((answer, index) => {
               return (
-                <Card key={answer.question.name}>
+                <Card key={index}>
                   <CardHeader>
-                    <CardTitle>
-                      {index + 1}. {answer.question.name}
+                    <CardTitle className="flex items-center justify-between gap-2">
+                      <span>
+                        {index + 1}. {answer.question.name}
+                      </span>
+                      {answer.isCorrect ? <span>✅</span> : <span>❌</span>}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -67,7 +65,7 @@ const ResultScreen = () => {
             })}
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="sticky bottom-0 z-10">
           <Button variant="outline" onClick={handleRestart}>
             Restart
           </Button>
